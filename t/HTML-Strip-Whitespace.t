@@ -4,7 +4,7 @@ use strict;
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 7;
+use Test::More tests => 9;
 
 BEGIN
 {
@@ -92,5 +92,47 @@ EOF
     is($result_with_newlines, $expected_with_newlines, "Simple #1 - w Newlines");
     # TEST
     is($result_wo_newlines, $expected_wo_newlines, "Simple #2 - wo Newlines");
+}
+
+{
+    my $in = <<"EOF";
+<html>
+    <body>
+        <p>
+        Hello world!
+        </p>
+        <pre>
+Hello y'all! <b>Good</b>
+        </pre>
+    </body>
+</html>
+EOF
+
+    my $expected_with_newlines = <<"EOF";
+<html>
+<body>
+<p>
+Hello world!
+</p>
+<pre>
+Hello y'all! <b>Good</b>
+        </pre>
+</body>
+</html>
+EOF
+
+    my $expected_wo_newlines = <<"EOF";
+<html><body><p>Hello world!</p><pre>
+Hello y'all! <b>Good</b>
+        </pre></body></html>
+EOF
+
+    my $result_with_newlines = get_html($in, 'strip_newlines' => 0);
+    my $result_wo_newlines = get_html($in, 'strip_newlines' => 1);
+
+    # TEST
+    is($result_with_newlines, $expected_with_newlines,  "Pre Test #1 - w Newlines");
+    # TEST
+    is($result_wo_newlines, $expected_wo_newlines, "Pre Test #1 - wo Newlines");
 }
 

@@ -1,6 +1,13 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
-0.01  Fri Nov 12 21:56:34 2004
+0.1.2      Sat Nov 13 12:52:02 2004
+    - Added more tests
+
+0.1.1      Sat Nov 13 12:36:23 2004
+    - Added a rudimentary pass-through function in HTML::Strip::Whitespace.
+    - There are now quite a lot of tests in the test suite.
+
+0.1.0      Fri Nov 12 21:56:34 2004
 	- original version; created by h2xs 1.23 with options
 		-b 5.4.0 -X HTML::Strip::Whitespace
 
