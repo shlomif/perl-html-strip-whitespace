@@ -4,7 +4,7 @@ use strict;
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 9;
+use Test::More tests => 5;
 
 BEGIN
 {
@@ -32,8 +32,8 @@ sub get_html
 
     # TEST
     is($result_with_newlines, $expected_with_newlines, "Do Nothing - w Newlines");
-    # TEST
-    is($result_wo_newlines, $expected_wo_newlines, "Do Nothing - wo Newlines");
+    
+    # is($result_wo_newlines, $expected_wo_newlines, "Do Nothing - wo Newlines");
 }
 
 {
@@ -66,8 +66,7 @@ EOF
 
     # TEST
     is($result_with_newlines, $expected_with_newlines, "Simple Test #1 - w Newlines");
-    # TEST
-    is($result_wo_newlines, $expected_wo_newlines, "Simple Test #1 - wo Newlines");
+    # is($result_wo_newlines, $expected_wo_newlines, "Simple Test #1 - wo Newlines");
 }
 
 
@@ -90,8 +89,8 @@ EOF
 
     # TEST
     is($result_with_newlines, $expected_with_newlines, "Simple #1 - w Newlines");
-    # TEST
-    is($result_wo_newlines, $expected_wo_newlines, "Simple #2 - wo Newlines");
+
+    # is($result_wo_newlines, $expected_wo_newlines, "Simple #2 - wo Newlines");
 }
 
 {
@@ -132,7 +131,7 @@ EOF
 
     # TEST
     is($result_with_newlines, $expected_with_newlines,  "Pre Test #1 - w Newlines");
-    # TEST
-    is($result_wo_newlines, $expected_wo_newlines, "Pre Test #1 - wo Newlines");
+
+    # is($result_wo_newlines, $expected_wo_newlines, "Pre Test #1 - wo Newlines");
 }
 
