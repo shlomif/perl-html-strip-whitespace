@@ -8,7 +8,7 @@ WriteMakefile(
     PREREQ_PM         => 
     {
         'Test::More' => 0,
-        'HTML::TokeParser::Simple' => "3.13",
+        'HTML::TokeParser::Simple' => 0,
     }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/HTML/Strip/Whitespace.pm', # retrieve abstract from module

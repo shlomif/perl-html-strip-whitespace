@@ -1,7 +1,9 @@
 Changes
+COPYING
 Makefile.PL
 MANIFEST
 README
 t/HTML-Strip-Whitespace.t
 lib/HTML/Strip/Whitespace.pm
 META.yml                                 Module meta-data (added by MakeMaker)
+TODO

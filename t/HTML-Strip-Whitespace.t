@@ -15,7 +15,11 @@ sub get_html
 {
     my $source = shift;
     my $buffer = "";
-    html_strip_whitespace(\$source, \$buffer, @_);
+    html_strip_whitespace(
+        'source' => \$source, 
+        'out' => \$buffer, 
+        @_
+        );
     return $buffer;
 }
 

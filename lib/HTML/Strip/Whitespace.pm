@@ -207,17 +207,18 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 	
 );
 
-$VERSION = '0.1.4';
+$VERSION = '0.1.5';
 
 # Preloaded methods go here.
 
 sub html_strip_whitespace
 {
-    my $source = shift;
-    my $out_fh = shift;
     my %args = (@_);
+    my $source = $args{'source'} or 
+        die "source argument not specified.";
     my $strip_newlines = $args{'strip_newlines'} || 0;
-
+    my $out_fh = $args{'out'} or
+        die "out argument not specified.";
     my $state = 
         HTML::Strip::Whitespace::State->new(
             'parser_args' => $source,
@@ -233,53 +234,53 @@ sub html_strip_whitespace
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
-
 =head1 NAME
 
-HTML::Strip::Whitespace - Perl extension for blah blah blah
+HTML::Strip::Whitespace - Perl extension for stripping whitespace out of
+HTML.
 
 =head1 SYNOPSIS
 
-  use HTML::Strip::Whitespace;
-  blah blah blah
+    use HTML::Strip::Whitespace qw(html_strip_whitespace);
+    
+    my $html = <<"EOF";
+    <html>
+    <body>
+    
+    <p>
+        Hello there!
+    </p>
+    
+    </body>
+    </html>
+    EOF
+    my $buffer = "";
+    
+    html_strip_whitespace(
+        'source' => \$html
+        'out' => \$buffer
+        );
 
 =head1 DESCRIPTION
 
-Stub documentation for HTML::Strip::Whitespace, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module tries to strip as much whitespace from an HTML as it can
+without eliminating valid whitespace (like the one inside <pre>).
 
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
-
-
-
-=head1 SEE ALSO
-
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+To use it call the function C<HTML::Strip::Whitespace::html_strip_whitespace>,
+with named parameters. C<source> is the HTML::TokeParser source for the 
+HTML. C<out> can be a reference to a buffer which will be filled with the 
+stripped HTML, or alternatively a reference to a sub-routine or a file handle
+that will output it.
 
 =head1 AUTHOR
 
-Shlomi Fish, E<lt>shlomi@mandrakesoft.comE<gt>
+Shlomi Fish, E<lt>shlomif@iglu.org.ilE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 2004 by Shlomi Fish
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
-
+This library is free software; you can redistribute it and/or modify it
+under the terms of the MIT X11 license.
 
 =cut
