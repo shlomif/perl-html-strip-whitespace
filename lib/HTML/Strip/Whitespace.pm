@@ -30,7 +30,7 @@ sub initialize
         );
 
     $self->{'strip_newlines'} = $args{'strip_newlines'} || 0;
-    $self->{'out'} = $args{'out_callback'};
+    $self->{'out_fh'} = $args{'out_fh'};
 
     # Get the first element to initialize the parser
     # Otherwise the first call to next_state would return undef;
@@ -101,6 +101,83 @@ sub is_preserving_start_tag
     return undef;
 }
 
+sub handle_text
+{
+    my $state = shift;
+    
+    if ($state->this->is_text())
+    {
+        $state->out($state->text_strip());
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+sub out
+{
+    my $self = shift;
+    my $what = shift;
+    my $out_fh = $self->{'out_fh'};
+    
+    if (ref($out_fh) eq "CODE")
+    {
+        &{$out_fh}($what);
+    }
+    elsif (ref($out_fh) eq "SCALAR")
+    {
+        $$out_fh .= $what;
+    }
+    elsif (ref($out_fh) eq "GLOB")
+    {
+        print {*{$out_fh}} $what;
+    }
+
+    return 0;
+}
+
+sub out_this
+{
+    my $state = shift;
+    $state->out($state->this()->as_is());
+}
+
+sub process
+{
+    my $state = shift;
+    
+    my $tag_type;
+
+    while ($state->next_state())
+    {
+        if (! $state->handle_text())
+        {
+            # Text was handled
+        }
+        # If it's a preserving start tag, preserve all the text inside it.
+        # This is for example, a <pre> tag in which the spaces matter.
+        elsif ($tag_type = $state->is_preserving_start_tag())
+        {
+            my $do_once = 1;
+            while ($do_once || $state->next_state())
+            {
+                $do_once = 0;
+                $state->out_this();
+                last if ($state->this()->is_end_tag($tag_type))
+            }
+        }
+        else
+        {
+            $state->out_this();
+        }
+    }
+
+    # Return 0 on success.
+    return 0;
+}
+
 package HTML::Strip::Whitespace;
 
 use 5.004;
@@ -130,7 +207,7 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 	
 );
 
-$VERSION = '0.1.3';
+$VERSION = '0.1.4';
 
 # Preloaded methods go here.
 
@@ -141,62 +218,14 @@ sub html_strip_whitespace
     my %args = (@_);
     my $strip_newlines = $args{'strip_newlines'} || 0;
 
-    my $out = sub {
-        my $what = shift;
-        if (ref($out_fh) eq "CODE")
-        {
-            &{$out_fh}($what);
-        }
-        elsif (ref($out_fh) eq "SCALAR")
-        {
-            $$out_fh .= $what;
-        }
-        elsif (ref($out_fh) eq "GLOB")
-        {
-            print {*{$out_fh}} $what;
-        }
-    };
-
     my $state = 
         HTML::Strip::Whitespace::State->new(
             'parser_args' => $source,
             'strip_newlines' => $strip_newlines,
-            'out_callback' => $out,
+            'out_fh' => $out_fh,
         );
 
-
-    my $tag_type;
-
-    while ($state->next_state())
-    {
-        if ($state->this->is_text())
-        {
-            $out->(
-                $state->text_strip()
-            );            
-        }
-        # If it's a preserving start tag, preserve all the text inside it.
-        # This is for example, a <pre> tag in which the spaces matter.
-        elsif ($tag_type = $state->is_preserving_start_tag())
-        {
-            my $do_once = 1;
-            while ($do_once || $state->next_state())
-            {
-                $do_once = 0;
-                $out->(
-                    $state->this()->as_is()
-                );
-                last if ($state->this()->is_end_tag($tag_type))
-            }
-        }
-        else
-        {
-            $out->($state->this()->as_is());
-        }
-    }
-
-    # Return 0 on success.
-    return 0;
+    return $state->process();
 }
 
 
