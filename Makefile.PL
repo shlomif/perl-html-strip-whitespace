@@ -5,8 +5,12 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'HTML::Strip::Whitespace',
     VERSION_FROM      => 'lib/HTML/Strip/Whitespace.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => 
+    {
+        'Test::More' => 0,
+        'HTML::TokeParser::Simple' => "3.13",
+    }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/HTML/Strip/Whitespace.pm', # retrieve abstract from module
-       AUTHOR         => 'Shlomi Fish <shlomi@mandrakesoft.com>') : ()),
+       AUTHOR         => 'Shlomi Fish <shlomif@iglu.org.il>') : ()),
 );
