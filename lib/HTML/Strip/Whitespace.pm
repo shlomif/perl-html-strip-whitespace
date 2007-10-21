@@ -257,7 +257,7 @@ HTML.
     my $buffer = "";
     
     html_strip_whitespace(
-        'source' => \$html
+        'source' => \$html,
         'out' => \$buffer
         );
 
