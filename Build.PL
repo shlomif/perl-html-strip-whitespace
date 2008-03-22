@@ -9,6 +9,9 @@ my $build = Module::Build->new(
     {
            'HTML::TokeParser::Simple' => 0,
            'warnings' => 0,
+           'strict' => 0,
+           'Exporter' => 0,
+           'vars' => 0,
     },
     'build_requires' =>
     {
