@@ -1,9 +1,12 @@
+Build.PL
 Changes
 COPYING
+lib/HTML/Strip/Whitespace.pm
 Makefile.PL
 MANIFEST
+META.yml                                 Module meta-data (added by MakeMaker)
 README
 t/HTML-Strip-Whitespace.t
-lib/HTML/Strip/Whitespace.pm
-META.yml                                 Module meta-data (added by MakeMaker)
 TODO
+t/pod-coverage.t
+t/pod.t
