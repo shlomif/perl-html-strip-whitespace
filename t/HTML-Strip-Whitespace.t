@@ -1,6 +1,7 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 use strict;
+use warnings;
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 

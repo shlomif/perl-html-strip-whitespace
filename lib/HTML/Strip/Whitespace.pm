@@ -2,6 +2,9 @@ package HTML::Strip::Whitespace;
 
 package HTML::Strip::Whitespace::State;
 
+use strict;
+use warnings;
+
 sub new
 {
     my $class = shift;
@@ -182,6 +185,7 @@ package HTML::Strip::Whitespace;
 
 use 5.004;
 use strict;
+use warnings;
 
 use HTML::TokeParser::Simple;
 
