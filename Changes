@@ -1,7 +1,13 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
+0.1.6      Sat Mar 22 20:26:45 IST 2008
     - Fixed a missing comma in the POD documentation. (courtesy of an email
     correspondent).
+    - Added a Build.PL file that now generates the Makefile.PL.
+    - Added "use warnings" everywhere.
+    - Added t/pod.t and t/pod-coverage.t.
+    - Added an examples directory with an example.
+    - Added a reference to HTML-Tidy.
 
 0.1.5      Sat Nov 13 15:40:16 2004
     - Filled in the README and the POD document.
