@@ -1,6 +1,7 @@
 Build.PL
 Changes
 COPYING
+examples/strip-ws.pl
 lib/HTML/Strip/Whitespace.pm
 Makefile.PL
 MANIFEST
