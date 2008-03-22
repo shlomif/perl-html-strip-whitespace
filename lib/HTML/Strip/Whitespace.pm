@@ -186,7 +186,6 @@ use strict;
 use HTML::TokeParser::Simple;
 
 require Exporter;
-use AutoLoader qw(AUTOLOAD);
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 @ISA = qw(Exporter);
 
