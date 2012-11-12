@@ -5,7 +5,7 @@ use Module::Build;
 
 my $build = Module::Build->new(
     'module_name' => "HTML::Strip::Whitespace",
-    'requires' => 
+    'requires' =>
     {
            'HTML::TokeParser::Simple' => 0,
            'warnings' => 0,
