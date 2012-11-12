@@ -1,7 +1,7 @@
 ---
 abstract: 'Perl extension for stripping whitespace out of'
 author:
-  - 'Shlomi Fish, E<lt>shlomif@iglu.org.ilE<gt>'
+  - 'Shlomi Fish, L<http://www.shlomifish.org/> (E-mail C<shlomif@cpan.org> ).'
 build_requires:
   Test::More: 0
 configure_requires:
