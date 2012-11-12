@@ -1,9 +1,11 @@
 use strict;
 use warnings;
 
-use Module::Build;
+use lib './inc';
 
-my $build = Module::Build->new(
+use Test::Run::Builder;
+
+my $build = Test::Run::Builder->new(
     'module_name' => "HTML::Strip::Whitespace",
     'requires' =>
     {
