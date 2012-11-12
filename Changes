@@ -1,5 +1,14 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
+0.1.7      Tue 13 Nov 00:32:35 IST 2012
+    - Add resources and keywords to META.yml / META.json.
+    - Update the E-mail and add the home site URL in the author contact
+    information.
+    - Remove trailing whitespace from some of the files.
+    - Add links to the POD.
+    - Mention the X11 licence in the COPYRIGHT & LICENSE section.
+    - Convert to inc/Test/Run/Builder.pm .
+
 0.1.6      Sat Mar 22 20:26:45 IST 2008
     - Fixed a missing comma in the POD documentation. (courtesy of an email
     correspondent).

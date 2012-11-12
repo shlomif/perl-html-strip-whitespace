@@ -7,6 +7,10 @@ use Test::Run::Builder;
 
 my $build = Test::Run::Builder->new(
     'module_name' => "HTML::Strip::Whitespace",
+    'configure_requires' =>
+    {
+        'Module::Build' => '0.40',
+    },
     'requires' =>
     {
            'HTML::TokeParser::Simple' => 0,
