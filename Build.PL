@@ -21,5 +21,27 @@ my $build = Test::Run::Builder->new(
     },
     'license' => "mit",
     create_makefile_pl => 'traditional',
+    meta_merge =>
+    {
+        resources =>
+        {
+            homepage => "http://web-cpan.shlomifish.org/modules/HTML-Strip-Whitespace/",
+            repository => "http://bitbucket.org/shlomif/perl-html-strip-whitespace",
+        },
+        keywords =>
+        [
+            "bandwidth",
+            "compression",
+            "html",
+            "reduce",
+            "remove",
+            "size",
+            "space",
+            "strip",
+            "tags",
+            "whitespace",
+        ],
+    },
 );
+
 $build->create_build_script;
