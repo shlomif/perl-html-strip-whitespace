@@ -8,6 +8,17 @@ configure_requires:
   Module::Build: 0.40
 dynamic_config: 1
 generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+keywords:
+  - bandwidth
+  - compression
+  - html
+  - reduce
+  - remove
+  - size
+  - space
+  - strip
+  - tags
+  - whitespace
 license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -27,5 +38,7 @@ requires:
   vars: 0
   warnings: 0
 resources:
+  homepage: http://web-cpan.shlomifish.org/modules/HTML-Strip-Whitespace/
   license: http://opensource.org/licenses/mit-license.php
+  repository: http://bitbucket.org/shlomif/perl-html-strip-whitespace
 version: v0.1.6
