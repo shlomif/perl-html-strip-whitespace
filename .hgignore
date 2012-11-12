@@ -3,5 +3,6 @@ _build
 Build
 Makefile.PL
 META.json
+META.yml
 MYMETA.json
 MYMETA.yml
