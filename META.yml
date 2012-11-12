@@ -1,29 +1,31 @@
 ---
-name: HTML-Strip-Whitespace
-version: 0.1.6
+abstract: 'Perl extension for stripping whitespace out of'
 author:
   - 'Shlomi Fish, E<lt>shlomif@iglu.org.ilE<gt>'
-abstract: |-
-  Perl extension for stripping whitespace out of
-  HTML.
+build_requires:
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.40
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: mit
-resources:
-  license: http://opensource.org/licenses/mit-license.php
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: HTML-Strip-Whitespace
+provides:
+  HTML::Strip::Whitespace:
+    file: lib/HTML/Strip/Whitespace.pm
+    version: v0.1.6
+  HTML::Strip::Whitespace::State:
+    file: lib/HTML/Strip/Whitespace.pm
+    version: 0
 requires:
   Exporter: 0
   HTML::TokeParser::Simple: 0
   strict: 0
   vars: 0
   warnings: 0
-build_requires:
-  Test::More: 0
-provides:
-  HTML::Strip::Whitespace:
-    file: lib/HTML/Strip/Whitespace.pm
-    version: 0.1.6
-  HTML::Strip::Whitespace::State:
-    file: lib/HTML/Strip/Whitespace.pm
-generated_by: Module::Build version 0.2808
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+resources:
+  license: http://opensource.org/licenses/mit-license.php
+version: v0.1.6
