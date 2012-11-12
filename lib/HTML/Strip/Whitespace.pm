@@ -285,20 +285,57 @@ HTML. C<out> can be a reference to a buffer which will be filled with the
 stripped HTML, or alternatively a reference to a sub-routine or a file handle
 that will output it.
 
+=head1 LINKS
+
+=over 4
+
+=item * Homepage
+
+L<http://web-cpan.shlomifish.org/modules/HTML-Strip-Whitespace/>
+
+=item * Bitbucket.org (Mercurial) Repository
+
+L<http://bitbucket.org/shlomif/perl-html-strip-whitespace>
+
+=back
+
 =head1 SEE ALSO
 
 HTML Tidy with its Perl binding, which probably does a better and faster job
-of rendering this page.
+of performing this task.
+
+L<HTML::Clean> is a module which also aims to optimise the size of HTML.
 
 =head1 AUTHOR
 
-Shlomi Fish, E<lt>shlomif@iglu.org.ilE<gt>
+Shlomi Fish, L<http://www.shlomifish.org/> (E-mail C<shlomif@cpan.org> ).
 
-=head1 COPYRIGHT AND LICENSE
+=head1 COPYRIGHT & LICENSE
 
-Copyright (C) 2004 by Shlomi Fish
+Copyright 2004 by Shlomi Fish
 
-This library is free software; you can redistribute it and/or modify it
-under the terms of the MIT X11 license.
+This program is distributed under the MIT (X11) License:
+L<http://www.opensource.org/licenses/mit-license.php>
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
 
 =cut
