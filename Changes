@@ -1,6 +1,7 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
     - Set minimum version of perl to 5.008 (CPANTS Kwalitee).
+    - Add the LICENSE file (CPANTS).
 
 0.1.7      Tue 13 Nov 00:32:35 IST 2012
     - Add resources and keywords to META.yml / META.json.
