@@ -17,8 +17,8 @@ sub get_html
     my $source = shift;
     my $buffer = "";
     html_strip_whitespace(
-        'source' => \$source, 
-        'out' => \$buffer, 
+        'source' => \$source,
+        'out' => \$buffer,
         @_
         );
     return $buffer;
@@ -37,7 +37,7 @@ sub get_html
 
     # TEST
     is($result_with_newlines, $expected_with_newlines, "Do Nothing - w Newlines");
-    
+
     # is($result_wo_newlines, $expected_wo_newlines, "Do Nothing - wo Newlines");
 }
 
