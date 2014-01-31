@@ -210,7 +210,7 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
 );
 
-$VERSION = '0.1.7';
+$VERSION = '0.1.8';
 
 # Preloaded methods go here.
 
