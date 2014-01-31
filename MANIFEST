@@ -1,15 +1,16 @@
 Build.PL
-Changes
 COPYING
+Changes
+LICENSE
+MANIFEST
+META.json
+META.yml                                 Module meta-data (added by MakeMaker)
+Makefile.PL
+README
+TODO
 examples/strip-ws.pl
 inc/Test/Run/Builder.pm
 lib/HTML/Strip/Whitespace.pm
-Makefile.PL
-MANIFEST
-META.yml                                 Module meta-data (added by MakeMaker)
-README
 t/HTML-Strip-Whitespace.t
-TODO
 t/pod-coverage.t
 t/pod.t
-META.json
