@@ -183,7 +183,7 @@ sub process
 
 package HTML::Strip::Whitespace;
 
-use 5.004;
+use 5.008;
 use strict;
 use warnings;
 

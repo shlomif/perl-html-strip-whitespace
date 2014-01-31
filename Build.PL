@@ -18,6 +18,7 @@ my $build = Test::Run::Builder->new(
            'strict' => 0,
            'Exporter' => 0,
            'vars' => 0,
+           'perl' => '5.008',
     },
     'build_requires' =>
     {
