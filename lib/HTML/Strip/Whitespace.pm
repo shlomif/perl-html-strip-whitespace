@@ -3,12 +3,14 @@ package HTML::Strip::Whitespace;
 use strict;
 use warnings;
 
+use 5.016;
+
 package HTML::Strip::Whitespace::State;
 
 sub new
 {
     my $class = shift;
-    my $self = {};
+    my $self  = {};
     bless $self, $class;
     $self->initialize(@_);
     return $self;
@@ -17,7 +19,7 @@ sub new
 sub to_array
 {
     my $v = shift;
-    return (ref($v) eq "ARRAY" ? (@$v) : $v);
+    return ( ref($v) eq "ARRAY" ? (@$v) : $v );
 }
 
 sub initialize
@@ -28,9 +30,7 @@ sub initialize
     $self->{'next'} = undef;
     $self->{'this'} = undef;
     $self->{'parser'} =
-        HTML::TokeParser::Simple->new(
-            to_array($args{'parser_args'})
-        );
+        HTML::TokeParser::Simple->new( to_array( $args{'parser_args'} ) );
 
     $self->{'strip_newlines'} = $args{'strip_newlines'} || 0;
     $self->{'out_fh'} = $args{'out_fh'};
@@ -45,9 +45,9 @@ sub initialize
 sub next_state
 {
     my $self = shift;
-    ($self->{'prev'}, $self->{'this'}, $self->{'next'}) =
-        ($self->{'this'}, $self->{'next'}, $self->{'parser'}->get_token());
-    if (!defined($self->{'this'}))
+    ( $self->{'prev'}, $self->{'this'}, $self->{'next'} ) =
+        ( $self->{'this'}, $self->{'next'}, $self->{'parser'}->get_token() );
+    if ( !defined( $self->{'this'} ) )
     {
         return undef;
     }
@@ -86,18 +86,14 @@ sub text_strip
     return $text;
 }
 
-my %preserving_start_tags =
-(
-    'pre' => 1,
-);
+my %preserving_start_tags = ( 'pre' => 1, );
 
 sub is_preserving_start_tag
 {
     my $self = shift;
-    my $t = $self->this();
-    if ($t->is_start_tag() &&
-        exists($preserving_start_tags{$t->get_tag()})
-       )
+    my $t    = $self->this();
+    if ( $t->is_start_tag()
+        && exists( $preserving_start_tags{ $t->get_tag() } ) )
     {
         return $t->get_tag();
     }
@@ -108,9 +104,9 @@ sub handle_text
 {
     my $state = shift;
 
-    if ($state->this->is_text())
+    if ( $state->this->is_text() )
     {
-        $state->out($state->text_strip());
+        $state->out( $state->text_strip() );
         return 0;
     }
     else
@@ -121,21 +117,21 @@ sub handle_text
 
 sub out
 {
-    my $self = shift;
-    my $what = shift;
+    my $self   = shift;
+    my $what   = shift;
     my $out_fh = $self->{'out_fh'};
 
-    if (ref($out_fh) eq "CODE")
+    if ( ref($out_fh) eq "CODE" )
     {
         &{$out_fh}($what);
     }
-    elsif (ref($out_fh) eq "SCALAR")
+    elsif ( ref($out_fh) eq "SCALAR" )
     {
         $$out_fh .= $what;
     }
-    elsif (ref($out_fh) eq "GLOB")
+    elsif ( ref($out_fh) eq "GLOB" )
     {
-        print {*{$out_fh}} $what;
+        print { *{$out_fh} } $what;
     }
 
     return 0;
@@ -144,7 +140,7 @@ sub out
 sub out_this
 {
     my $state = shift;
-    $state->out($state->this()->as_is());
+    $state->out( $state->this()->as_is() );
 }
 
 sub process
@@ -153,22 +149,23 @@ sub process
 
     my $tag_type;
 
-    while ($state->next_state())
+    while ( $state->next_state() )
     {
-        if (! $state->handle_text())
+        if ( !$state->handle_text() )
         {
             # Text was handled
         }
+
         # If it's a preserving start tag, preserve all the text inside it.
         # This is for example, a <pre> tag in which the spaces matter.
-        elsif ($tag_type = $state->is_preserving_start_tag())
+        elsif ( $tag_type = $state->is_preserving_start_tag() )
         {
             my $do_once = 1;
-            while ($do_once || $state->next_state())
+            while ( $do_once || $state->next_state() )
             {
                 $do_once = 0;
                 $state->out_this();
-                last if ($state->this()->is_end_tag($tag_type))
+                last if ( $state->this()->is_end_tag($tag_type) );
             }
         }
         else
@@ -193,18 +190,15 @@ require Exporter;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 @ISA = qw(Exporter);
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
+%EXPORT_TAGS = (
+    'all' => [
+        qw(
+            html_strip_whitespace
+            )
+    ]
+);
 
-# This allows declaration	use HTML::Strip::Whitespace ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-%EXPORT_TAGS = ( 'all' => [ qw(
-	html_strip_whitespace
-) ] );
-
-@EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} });
+@EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 @EXPORT = qw(
 
@@ -216,22 +210,20 @@ $VERSION = '0.1.8';
 
 sub html_strip_whitespace
 {
-    my %args = (@_);
-    my $source = $args{'source'} or
-        die "source argument not specified.";
+    my %args   = (@_);
+    my $source = $args{'source'}
+        or die "source argument not specified.";
     my $strip_newlines = $args{'strip_newlines'} || 0;
-    my $out_fh = $args{'out'} or
-        die "out argument not specified.";
-    my $state =
-        HTML::Strip::Whitespace::State->new(
-            'parser_args' => $source,
-            'strip_newlines' => $strip_newlines,
-            'out_fh' => $out_fh,
-        );
+    my $out_fh = $args{'out'}
+        or die "out argument not specified.";
+    my $state = HTML::Strip::Whitespace::State->new(
+        'parser_args'    => $source,
+        'strip_newlines' => $strip_newlines,
+        'out_fh'         => $out_fh,
+    );
 
     return $state->process();
 }
-
 
 # Autoload methods go after =cut, and are processed by the autosplit program.
 

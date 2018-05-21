@@ -1,5 +1,8 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
+0.2.0   2018-05-21
+    - Convert to Dist-Zilla .
+
 0.1.8   2014-01-31
     - Set minimum version of perl to 5.008 (CPANTS Kwalitee).
     - Add the LICENSE file (CPANTS).

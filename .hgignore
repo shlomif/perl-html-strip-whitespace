@@ -1,9 +1,1 @@
-Build
-HTML-Strip-Whitespace-v*
-META.json
-META.yml
-MYMETA.json
-MYMETA.yml
-Makefile.PL
-_build
-blib
+.build
