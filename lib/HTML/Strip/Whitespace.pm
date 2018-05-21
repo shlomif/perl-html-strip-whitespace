@@ -186,9 +186,8 @@ use warnings;
 
 use HTML::TokeParser::Simple;
 
-require Exporter;
-use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-@ISA = qw(Exporter);
+use parent 'Exporter';
+use vars qw(@EXPORT @EXPORT_OK %EXPORT_TAGS);
 
 %EXPORT_TAGS = (
     'all' => [
@@ -203,8 +202,6 @@ use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 @EXPORT = qw(
 
 );
-
-$VERSION = '0.1.8';
 
 # Preloaded methods go here.
 
