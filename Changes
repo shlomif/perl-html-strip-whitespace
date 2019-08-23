@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Strip::Whitespace.
 
+0.2.1   2019-08-23
+    - Moved the VCS repo to https://github.com/shlomif/perl-html-strip-whitespace
+    - No other significant changes.
+
 0.2.0   2018-05-21
     - Convert to Dist-Zilla .
 
