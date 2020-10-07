@@ -33,7 +33,7 @@ sub initialize
         HTML::TokeParser::Simple->new( to_array( $args{'parser_args'} ) );
 
     $self->{'strip_newlines'} = $args{'strip_newlines'} || 0;
-    $self->{'out_fh'} = $args{'out_fh'};
+    $self->{'out_fh'}         = $args{'out_fh'};
 
     # Get the first element to initialize the parser
     # Otherwise the first call to next_state would return undef;
@@ -47,11 +47,7 @@ sub next_state
     my $self = shift;
     ( $self->{'prev'}, $self->{'this'}, $self->{'next'} ) =
         ( $self->{'this'}, $self->{'next'}, $self->{'parser'}->get_token() );
-    if ( !defined( $self->{'this'} ) )
-    {
-        return undef;
-    }
-    return 1;
+    return defined( $self->{'this'} );
 }
 
 sub prev
@@ -97,7 +93,7 @@ sub is_preserving_start_tag
     {
         return $t->get_tag();
     }
-    return undef;
+    return '';
 }
 
 sub handle_text
@@ -211,7 +207,7 @@ sub html_strip_whitespace
     my $source = $args{'source'}
         or die "source argument not specified.";
     my $strip_newlines = $args{'strip_newlines'} || 0;
-    my $out_fh = $args{'out'}
+    my $out_fh         = $args{'out'}
         or die "out argument not specified.";
     my $state = HTML::Strip::Whitespace::State->new(
         'parser_args'    => $source,
