@@ -176,7 +176,7 @@ sub process
 
 package HTML::Strip::Whitespace;
 
-use 5.008;
+use 5.016;
 use strict;
 use warnings;
 
@@ -189,7 +189,7 @@ use vars qw(@EXPORT @EXPORT_OK %EXPORT_TAGS);
     'all' => [
         qw(
             html_strip_whitespace
-            )
+        )
     ]
 );
 
